@@ -1,41 +1,40 @@
-# Musiklistappen — [Ditt namn]
-
-> **Instruktion till dig:** den här filen är *din* README. Ersätt all text i hakparenteser med din egen, och ta bort den här rutan när du är klar. Uppgiften och kraven står i [`UPPGIFT.md`](UPPGIFT.md), och inlämningen beskrivs i [`INLAMNING.md`](INLAMNING.md).
+# Musiklistappen — [Raman Tajerian]
 
 ---
 
 ## Vad appen gör
 
-[Skriv här: två till tre meningar om din app. Vilken artist handlar den om och vad kan man göra i menyn?]
+Appen är ett konsolprogram i C# som använder en SQLite-databas med bandet Kent. Databasen har fyra av deras album och 45 låtar. I menyn kan man visa alla låtar, söka på titel, visa låtar tillsammans med vilket album de tillhör, och ta bort en låt.
 
 ## Så kör du den
 
 ```bash
-git clone [länk till din fork]
-cd [mappens namn]/MusikApp
+git clone https://github.com/raman-tajerian/raman-clo26-musiklistappen
+cd raman-clo26-musiklistappen/MusikApp
 dotnet run
 ```
 
-[Skriv här om något behöver göras först, t.ex. att `musik.db` ska ligga i mappen `MusikApp/`.]
+Databasen `musik.db` ska ligga i mappen `MusikApp/`. Om `appsettings.json` saknas kopierar man `appsettings.example.json` och döper om kopian till `appsettings.json`.
 
 ## Så ser huvudmenyn ut
 
-[Lägg in en screenshot här. Spara bilden i repot och länka den: `![Huvudmenyn](bild.png)`]
+https://kommodo.ai/i/JukLhvSSd39diPpYawNa
 
 ---
 
 ## Mina designval (VG)
 
-*Fyll i det här avsnittet om du siktar på VG. Annars kan du ta bort det.*
+*Fyll i det här avsnittet om du siktar på VG. Annars kan du ta bort det*
 
 1. **Hur designade du din databas? Varför valde du just den strukturen?**
 
-   [Skriv här]
+Jag har fem tabeller: artists, albums, songs, genres och song_genres. Jag delade upp informationen så att samma sak inte behöver skrivas flera gånger. Kents namn finns bara i artists, och albums har artist_id som pekar på rätt artist. Låtarna har på samma sätt album_id. Genrerna har en egen tabell, och song_genres kopplar ihop låtar och genrer eftersom en låt kan ha flera genrer och en genre kan höra till många låtar (many-to-many). Jag hade kunnat skriva genrerna direkt i songs, men då hade flera värden hamnat i samma cell, vilket gör det svårare att söka.
 
 2. **Vilket SQL-krav valde du (JOIN eller subquery) och varför passade det din app?**
 
-   [Skriv här]
+Jag valde JOIN. I songs finns bara album_id, alltså en siffra, men en användare vill se albumets namn. I menyval 3 kopplar jag därför ihop songs och albums med songs.album_id = albums.id, så att varje låt visas tillsammans med sitt album. Det passade appen eftersom datan redan låg i två tabeller.
+
 
 3. **Vad skulle du gjort annorlunda om du byggde om den från scratch?**
 
-   [Skriv här]
+Jag hade byggt och testat appen efter varje metod i stället för att skriva mycket på en gång. Jag hade också lagt till fler menyval, till exempel att lägga till en låt, och visat längden som minuter och sekunder i stället för sekunder eftersom det är så det visas på Spotify till exempel och jag föredrar det formatet.
