@@ -36,7 +36,7 @@ public class DbHandler
             songs.Add(new Song
             {
                 Id = reader.GetInt32(0),                // Kolumn 0 = id
-                Title = reader.GetString(1),            // Kolmn 1 = title
+                Title = reader.GetString(1),            // Kolumn 1 = title
                 LengthSeconds = reader.GetInt32(2),     // Kolumn 2 = length_seconds
                 AlbumId = reader.GetInt32(3)            // Kolumn 3 = album_id
             });
@@ -48,17 +48,8 @@ public class DbHandler
 
     }
 
-    // Metod 2: Hämta specifik låt
 
-    public Song? GetSongById(int id)
-
-    {
-        throw new NotImplementedException();
-
-    }
-
-
-    // Metod 3: Sök låtar på titel
+    // Metod 2: Sök låtar på titel
 
     public List<Song> SearchSongs(string searchText)
     {
@@ -92,15 +83,7 @@ public class DbHandler
     }
 
 
-    // Metod 4: Lägg till en låt
-
-    public void AddSong(Song song)
-    {
-        throw new NotImplementedException();
-
-    }
-
-    // Metod 5: Ta bort en låt och returnerar true om en låt faktiskt togs bort
+    // Metod 3: Ta bort en låt och returnerar true om en låt faktiskt togs bort
 
     public bool DeleteSong(int id)
     {
@@ -130,7 +113,7 @@ public class DbHandler
     }
 
 
-    // Metod 6: Låtar tillsammans med albumets namn. Använder en JOIN
+    // Metod 4: Låtar tillsammans med albumets namn. Använder en JOIN
 
     public List<(string SongTitle, string AlbumName)> GetSongsWithAlbum()
     {
@@ -159,12 +142,5 @@ public class DbHandler
 
     }
 
-    // Metod 7
-
-    public List<Song> GetSongsLongerThanAverage()
-    {
-        throw new NotImplementedException();
-
-    }
 }
 
